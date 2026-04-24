@@ -1,0 +1,47 @@
+{
+  "name": "fe-tanstack-solid-boilerplate",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "start": "node .output/server/index.mjs",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.13.11",
+    "@prisma/client": "^7.8.0",
+    "@tanstack/router-plugin": "^1.133.21",
+    "@tanstack/solid-router": "latest",
+    "@tanstack/solid-router-devtools": "latest",
+    "@tanstack/solid-router-ssr-query": "latest",
+    "@tanstack/solid-start": "latest",
+    "bcryptjs": "^3.0.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "jose": "^6.2.2",
+    "lucide-solid": "^1.11.0",
+    "solid-js": "^1.9.11",
+    "tailwind-merge": "^3.5.0",
+    "urql": "^5.0.2",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.4",
+    "@tanstack/devtools-vite": "latest",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^25.6.0",
+    "prisma": "^7.8.0",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^5.7.2",
+    "vite": "^7.3.1",
+    "vite-plugin-solid": "^2.11.10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  }
+}
