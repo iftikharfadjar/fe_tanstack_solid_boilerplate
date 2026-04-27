@@ -1,11 +1,11 @@
-import { createFileRoute, redirect } from '@tanstack/solid-router';
-import { Title } from '@solidjs/meta';
+import { createFileRoute, redirect, useNavigate } from '@tanstack/solid-router';
 import { getSessionUserFn, logoutFn } from '../server/serverFn/auth';
-import { createResource, Suspense, Show } from 'solid-js';
-import { useNavigate } from '@tanstack/solid-router';
-import { useSubmission } from '@tanstack/solid-start';
+import { createSignal } from 'solid-js';
 
 export const Route = createFileRoute('/dashboard')({
+  head: () => ({
+    meta: [{ title: 'Dashboard - Protected' }],
+  }),
   beforeLoad: async () => {
     const user = await getSessionUserFn();
     if (!user) {
@@ -21,17 +21,22 @@ export const Route = createFileRoute('/dashboard')({
 function DashboardPage() {
   const { user } = Route.useRouteContext();
   const navigate = useNavigate();
-  const logoutSubmission = useSubmission(logoutFn);
+  const [isLoggingOut, setIsLoggingOut] = createSignal(false);
 
   const handleLogout = async () => {
-    await logoutSubmission.submit();
-    navigate({ to: '/' });
+    setIsLoggingOut(true);
+    try {
+      await logoutFn();
+      navigate({ to: '/' });
+    } catch (e) {
+      console.error('Logout failed', e);
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   return (
     <main class="min-h-screen bg-gray-100">
-      <Title>Dashboard - Protected</Title>
-      
       <nav class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16">
@@ -41,10 +46,10 @@ function DashboardPage() {
             <div class="flex items-center">
               <button
                 onClick={handleLogout}
-                disabled={logoutSubmission.pending}
+                disabled={isLoggingOut()}
                 class="ml-4 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
               >
-                {logoutSubmission.pending ? 'Logging out...' : 'Logout'}
+                {isLoggingOut() ? 'Logging out...' : 'Logout'}
               </button>
             </div>
           </div>

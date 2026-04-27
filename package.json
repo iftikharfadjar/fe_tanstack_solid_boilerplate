@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "@kobalte/core": "^0.13.11",
-    "@prisma/client": "^7.8.0",
+    "@prisma/client": "5",
+    "@solidjs/meta": "^0.29.4",
     "@tanstack/router-plugin": "^1.133.21",
     "@tanstack/solid-router": "latest",
     "@tanstack/solid-router-devtools": "latest",
@@ -25,6 +26,7 @@
     "solid-js": "^1.9.11",
     "tailwind-merge": "^3.5.0",
     "urql": "^5.0.2",
+    "vinxi": "^0.5.11",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
@@ -32,7 +34,7 @@
     "@tanstack/devtools-vite": "latest",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^25.6.0",
-    "prisma": "^7.8.0",
+    "prisma": "5",
     "tailwindcss": "^4.2.4",
     "typescript": "^5.7.2",
     "vite": "^7.3.1",

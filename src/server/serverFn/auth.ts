@@ -1,20 +1,16 @@
-import { createServerFn } from '@tanstack/start';
+import { createServerFn } from '@tanstack/solid-start';
 import * as bcrypt from 'bcryptjs';
 import { userRepository } from '../../data/repositories/UserRepository';
 import { createSession, deleteSession, verifySession } from './session';
 
 export const signupFn = createServerFn({ method: 'POST' })
-  .validator((data: unknown) => {
+  .handler(async ({ data }) => {
     // Basic validation
     if (typeof data !== 'object' || data === null) throw new Error('Invalid data');
     const { email, password } = data as Record<string, unknown>;
     if (typeof email !== 'string' || typeof password !== 'string') {
       throw new Error('Invalid email or password');
     }
-    return { email, password };
-  })
-  .handler(async ({ data }) => {
-    const { email, password } = data;
     
     const existingUser = await userRepository.findByEmail(email);
     if (existingUser) {
@@ -29,16 +25,12 @@ export const signupFn = createServerFn({ method: 'POST' })
   });
 
 export const loginFn = createServerFn({ method: 'POST' })
-  .validator((data: unknown) => {
+  .handler(async ({ data }) => {
     if (typeof data !== 'object' || data === null) throw new Error('Invalid data');
     const { email, password } = data as Record<string, unknown>;
     if (typeof email !== 'string' || typeof password !== 'string') {
       throw new Error('Invalid email or password');
     }
-    return { email, password };
-  })
-  .handler(async ({ data }) => {
-    const { email, password } = data;
     
     const user = await userRepository.findByEmail(email);
     if (!user || !user.password) {
