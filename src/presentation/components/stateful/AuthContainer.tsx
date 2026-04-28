@@ -1,9 +1,9 @@
-import { Component, createSignal } from 'solid-js';
+import {  createSignal } from 'solid-js';
 import { AuthForm } from '../stateless/AuthForm';
 import { loginFn, signupFn } from '../../../server/serverFn/auth';
 import { useNavigate } from '@tanstack/solid-router';
 
-export const AuthContainer: Component = () => {
+export const AuthContainer  = () => {
   const [mode, setMode] = createSignal<'login' | 'signup'>('login');
   const [error, setError] = createSignal<string>();
   const [isLoading, setIsLoading] = createSignal(false);

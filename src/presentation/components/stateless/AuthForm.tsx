@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import {  createSignal } from 'solid-js';
 
 interface AuthFormProps {
   mode: 'login' | 'signup';
@@ -8,7 +8,7 @@ interface AuthFormProps {
   onToggleMode: () => void;
 }
 
-export const AuthForm: Component<AuthFormProps> = (props) => {
+export const AuthForm  = (props) => {
   const [email, setEmail] = createSignal('');
   const [password, setPassword] = createSignal('');
 

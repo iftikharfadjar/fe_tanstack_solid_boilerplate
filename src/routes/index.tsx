@@ -1,5 +1,4 @@
-import { createFileRoute } from '@tanstack/solid-router';
-import { A } from '@tanstack/solid-router';
+import { createFileRoute, Link } from '@tanstack/solid-router';
 
 export const Route = createFileRoute('/')({
   head: () => ({
@@ -24,18 +23,18 @@ function Home() {
 
         <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
           <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
-            <A
-              to="/auth"
-              class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-blue-600 transition-colors md:py-4 md:text-lg md:px-10"
-            >
-              Get Started
-            </A>
-            <A
-              to="/dashboard"
-              class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-blue-100 hover:bg-blue-200 transition-colors md:py-4 md:text-lg md:px-10"
-            >
-              Go to Dashboard
-            </A>
+            <Link
+               to="/auth"
+               class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-blue-600 transition-colors md:py-4 md:text-lg md:px-10"
+             >
+               Get Started
+             </Link>
+             <Link
+               to="/dashboard"
+               class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-blue-100 hover:bg-blue-200 transition-colors md:py-4 md:text-lg md:px-10"
+             >
+               Go to Dashboard
+             </Link>
           </div>
         </div>
       </div>
